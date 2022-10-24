@@ -1,13 +1,38 @@
+import { useState } from 'react'
 import './Message.css'
 
-export const Message = ({text}) => {
-    return <div className="message-text">
-        <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Quae rerum assumenda odit quam iusto quis corporis.       
-        </p>
-        <p>{text}</p>
-    </div>
-
-
+const Message({item}) = () => {
+    const [MessageList, setMessageList] = useState([
+        {
+            text: 'text 1',
+            author: 'author 1',
+        },
+        {
+            text: 'text 2',
+            author: 'author 2',
+        },
+        {
+            text: 'text 3',
+            author: 'author 3',
+        },
+        {
+            text: 'text 4',
+            author: 'author 4',
+        }
+    ]);
+    return (
+        <div>
+            {MessageList.map(
+                (item) => {
+                    return (
+                        <>
+                            <h3>{item.author}</h3>
+                            <p>{item.text}</p>
+                        </>
+                    )
+                }
+            )}
+            
+        </div>
+    );
 }
