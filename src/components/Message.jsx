@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Message.css'
 
-const Message({item}) = () => {
+export const Message = ({item}) => {
     const [MessageList, setMessageList] = useState([
         {
             text: 'text 1',
