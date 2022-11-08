@@ -2,26 +2,22 @@ import { useRef, useState, useEffect } from 'react'
 import './Message.css'
 
 export const Message = () => {
-    const [MessageList, setMessageList] = useState([
-        {
-            text: 'text 1',
-            author: 'author 1',
-        }
-    ]);
+    const [MessageList, setMessageList] = useState([]);
     const [Value, setValue] = useState('');
     const handleChange = (event) => setValue(event.target.value);
     const ref = useRef(null);    
     const form = (event) => {event.preventDefault()};
     const setInput = () => {
         setMessageList([...MessageList, 
-            {text: 'Text from the User', author: 'User' }
+            {text: Value, author: 'User' }
         ])
     };
 
     useEffect(() => {
         if (MessageList[MessageList.length - 1]?.author === 'User') { 
             setTimeout(() => {setMessageList([...MessageList, 
-                { text: 'Something in bot\'s language', author: 'Bot' }]); 
+                { text: "Hallo, Ola, Merhaba, שלןם, Привет, Hello, \
+                Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", author: "Bot" }]); 
             }, 1500); } 
         }, [MessageList]);
 
