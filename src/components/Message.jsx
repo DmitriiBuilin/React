@@ -1,27 +1,38 @@
 import { useRef, useState, useEffect } from 'react'
 import './Message.css'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 
 export const Message = () => {
-    const [MessageList, setMessageList] = useState([
-        {
-            text: 'text 1',
-            author: 'author 1',
-        }
-    ]);
+    const [MessageList, setMessageList] = useState([]);
     const [Value, setValue] = useState('');
     const handleChange = (event) => setValue(event.target.value);
     const ref = useRef(null);    
     const form = (event) => {event.preventDefault()};
     const setInput = () => {
         setMessageList([...MessageList, 
-            {text: 'Text from the User', author: 'User' }
+            {text: Value, author: 'User' }
         ])
     };
-
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'left',
+        color: theme.palette.text.secondary,
+    }));
     useEffect(() => {
         if (MessageList[MessageList.length - 1]?.author === 'User') { 
             setTimeout(() => {setMessageList([...MessageList, 
-                { text: 'Something in bot\'s language', author: 'Bot' }]); 
+                { 
+                    text: "Hallo, Ola, Merhaba, שלןם, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
+                    author: "Bot James" 
+                }]); 
             }, 1500); } 
         }, [MessageList]);
 
@@ -30,17 +41,29 @@ export const Message = () => {
             {MessageList.map(
                 (item) => {
                     return (
-                        <div key={MessageList[item]}>
-                            <h3>Name: {item.author}</h3>
-                            <p>Message: {item.text}</p>
+                        <div className='container' key={MessageList[item]}>
+                            <h3 className='avatar'>
+                                <Avatar alt={item.author} src="/"
+                                /> 
+                                {item.author}
+                            </h3>
+                            <Box sx={{ width: '100%' }}>
+                                <Stack spacing={2}>
+                                    <Item>{item.text}</Item>
+                                </Stack>
+                                </Box>
                         </div>
                     )
                 }
             )}
-            <form onSubmit={form}>
-                <input className='input' ref={ref} type="text" value={Value} 
-                    onChange={handleChange}/>
-                <button className='button' onClick={setInput}>Send</button>
+            <form className='input-form container' onSubmit={form}>
+                <TextField className='input' ref={ref} id="outlined-basic" 
+                    label="Message" variant="outlined" value={Value} 
+                    onChange={handleChange}
+                />
+                <Button variant="outlined" className='button' 
+                    onClick={setInput}>Send
+                </Button>
             </form>
         </div>
     );
