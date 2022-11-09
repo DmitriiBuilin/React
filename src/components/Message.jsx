@@ -12,7 +12,7 @@ export const Message = () => {
     const [MessageList, setMessageList] = useState([]);
     const [Value, setValue] = useState('');
     const handleChange = (event) => setValue(event.target.value);
-    const ref = useRef(null);    
+    const inputRef = useRef(null);    
     const form = (event) => {event.preventDefault()};
     const setInput = () => {
         setMessageList([...MessageList, 
@@ -27,21 +27,25 @@ export const Message = () => {
         color: theme.palette.text.secondary,
     }));
     useEffect(() => {
+        inputRef.current?.focus();
         if (MessageList[MessageList.length - 1]?.author === 'User') { 
-            setTimeout(() => {setMessageList([...MessageList, 
+            setTimeout(() => {
+                setMessageList([...MessageList, 
                 { 
-                    text: "Hallo, Ola, Merhaba, שלןם, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
+                    text: "Hallo, Hola, Merhaba, שלןם, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
                     author: "Bot James" 
                 }]); 
             }, 1500); } 
-        }, [MessageList]);
+        }, [MessageList]
+    );
 
     return (
-        <div>           
-            {MessageList.map(
+        <div>
+                       
+            {MessageList.map(   
                 (item) => {
                     return (
-                        <div className='container' key={MessageList[item]}>
+                        <div className='container' key={MessageList.indexOf(item)}>
                             <h3 className='avatar'>
                                 <Avatar alt={item.author} src="/"
                                 /> 
@@ -57,11 +61,11 @@ export const Message = () => {
                 }
             )}
             <form className='input-form container' onSubmit={form}>
-                <TextField className='input' ref={ref} id="outlined-basic" 
+                <TextField ref={inputRef} className='input' id="outlined-basic" 
                     label="Message" variant="outlined" value={Value} 
                     onChange={handleChange}
                 />
-                <Button variant="outlined" className='button' 
+                <Button variant="outlined"  className='button' 
                     onClick={setInput}>Send
                 </Button>
             </form>
