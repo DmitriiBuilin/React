@@ -61,8 +61,9 @@ export const Message = () => {
                 (item) => {
                     return (
                         <div key={MessageList[item]}>
-                            <h3><Avatar alt={item.author} src="/src/img/ava.jpg"/> {item.author}</h3>
+                            {/* <h3><Avatar alt={item.author} src="/src/img/ava.jpg"/> {item.author}</h3> */}
                                 {/* <Avatar {...stringAvatar('Bob d')} /> */}
+                            <h3>Name: {item.author}</h3>
                             <p>Message: {item.text}</p>
                         </div>
                     )
@@ -75,10 +76,10 @@ export const Message = () => {
                     label="Message" variant="outlined" value={Value} 
                     onChange={handleChange}
                 /> */}
-                
-                <Button variant="outlined" className='button' 
+                <button className='button' onClick={setInput}>Send</button>
+                {/* <Button variant="outlined" className='button' 
                     onClick={setInput}>Send
-                </Button>
+                </Button> */}
             </form>
         </div>
     );
