@@ -1,12 +1,26 @@
-import { FC } from 'react'
-import { List, ListItem } from '@mui/material';
+import React, { FC, useState, useEffect } from 'react'
+import { List, ListItem, Button, TextField } from '@mui/material';
 import { Chat } from '../types';
+import { nanoid } from 'nanoid'
+
 
 interface ChatListProps {
     chats: Chat[];
+    onAddChat: (chat: Chat) => void;
 }
 
-export const ChatList: FC<ChatListProps> = ({chats}) => {
+export const ChatList: FC<ChatListProps> = ({ chats, onAddChat }) => {
+    const [value, setValue] = useState('');
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {e.preventDefault();
+        console.log('Tamam')
+        if(value) {
+            onAddChat({
+                id: nanoid(),
+                name: value,
+            })
+            setValue('');
+        }   
+    };
 
 
     // const [ChatList] = useState([
@@ -38,6 +52,16 @@ export const ChatList: FC<ChatListProps> = ({chats}) => {
                     )
                 )}
             </List>
+            <form className='input-form container' onSubmit={handleSubmit}>
+            <TextField className='input' id="outlined-basic" 
+                label="Message" variant="outlined" value={value} onChange={(e) =>
+                setValue(e.target.value)
+                }
+            />
+            <Button variant="outlined"  className='button'>
+                new chat
+            </Button>
+            </form>
         </>
 
         // <div className='chatList'>                       
