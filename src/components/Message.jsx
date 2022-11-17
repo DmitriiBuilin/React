@@ -27,6 +27,7 @@ export const Message = () => {
         color: theme.palette.text.secondary,
     }));
     useEffect(() => {
+        setValue('');
         inputRef.current?.focus();
         if (MessageList[MessageList.length - 1]?.author === 'User') { 
             setTimeout(() => {
@@ -61,7 +62,7 @@ export const Message = () => {
                 }
             )}
             <form className='input-form container' onSubmit={form}>
-                <TextField ref={inputRef} className='input' id="outlined-basic" 
+                <input ref={inputRef} className='input' id="outlined-basic" 
                     label="Message" variant="outlined" value={Value} 
                     onChange={handleChange}
                 />
