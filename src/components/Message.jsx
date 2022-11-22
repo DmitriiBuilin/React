@@ -27,12 +27,13 @@ export const Message = () => {
     }));
     useEffect(() => {
         setValue('');
+        console.log(MessageList);
         inputRef.current?.focus();
         if (MessageList[MessageList.length - 1]?.author === 'User') { 
             setTimeout(() => {
                 setMessageList([...MessageList, 
                 { 
-                    text: "Hallo, Hola, Merhaba, שלןם, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
+                    text: "Hallo, Hola, Merhaba, שלום, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
                     author: "Bot James" 
                 }]); 
             }, 1500); } 

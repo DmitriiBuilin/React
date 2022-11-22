@@ -1,42 +1,44 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './ChatList.css'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import { Link } from 'react-router-dom';
 
 
 export const ChatList = () => {
-    const [ChatList] = useState([
+    const [ChatLista] = useState([
         {
             name: 'Friend Chat',
-            id: 'Friend',
+            id: 'friend',
+            MessageList: [{text:"FirstMessage", author: 'User'}],
         },
         {
             name: 'Happy Chat',
-            id: 'Happy',
+            id: 'happy',
+            MessageList: [],
         },
         {
             name: 'Lucky Chat',
-            id: 'Lucky',
+            id: 'lucky',
+            MessageList: [],
         },
     ]);
 
 
-    useEffect(() => {
-        }, []
-    );
-
     return (
         <div className='chatList'>                       
-           {ChatList.map(
+           {ChatLista.map(
                 (item) => {
                     return (
                         <div key={item.id}>
-                            <List className='list' component="nav" aria-label="mailbox folders">
+                            <List className='list' component="nav" aria-label="mailbox folders">                                
                                 <ListItem button>
-                                <ListItemText primary={item.name} />
-                                </ListItem>
+                                    <Link to={`/chats/${item.id}`}>
+                                    <ListItemText primary={item.name} />
+                                    </Link>
+                                </ListItem>                                
                                 <Divider />
                             </List>
                         </div>

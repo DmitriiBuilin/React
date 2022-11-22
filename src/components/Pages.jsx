@@ -1,32 +1,43 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { ChatList } from "./ChatList";
+import { Chat, NoChat } from "./Chats";
+import { Error } from "./Error";
+import { Main } from "./Main";
 import './Pages.css';
+import { Profile } from "./Profile";
 
-export const Pages= () => {
+
+export const Pages = () => {
     return (
         <BrowserRouter>
-            <ul className="linksButtons"> 
-                <li> 
-                    <Link className="link" to="/">Home</Link> 
-                </li> 
-                <li> 
-                    <Link className="link" to="/profile">Profile</Link> 
-                </li> 
-                <li> 
-                    <Link className="link" to="/chats">Chats</Link> 
-                </li> 
-            </ul> 
+            <header>
+                <ul className="linksButtons"> 
+                    <li> 
+                        <Link className="link" to="/">Home</Link> 
+                    </li> 
+                    <li> 
+                        <Link className="link" to="/profile">Profile</Link> 
+                    </li> 
+                    <li> 
+                        <Link className="link" to="/chats">Chats</Link> 
+                    </li> 
+                </ul> 
+            </header>
             
             <Routes> 
-                <Route path="/profile"> 
-                    {/* <Profile/>  */}
+                <Route path="/profile" element={<Profile />}> 
                 </Route> 
-                <Route exact path="/chats" > 
-                    {/* <Chats/>  */}
+                <Route exact path="/chats" element={<ChatList /> }> 
                 </Route> 
-                <Route exactpath="/"> 
-                    {/* <Home/>  */}
+                <Route exact path="/chats/:chatId" element={<Chat /> }> 
                 </Route> 
+                <Route exact path="/" element={<Main /> }> 
+                </Route>
+                <Route element={<Error />}> 
+                </Route>
+                <Route path="/chats/nochat" element={<NoChat /> }> 
+                </Route>
             </Routes>
         </BrowserRouter>
     )
