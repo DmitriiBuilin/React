@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import './Message.css'
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -41,7 +40,7 @@ export const Message = () => {
     );
 
     return (
-        <div>
+        <div className='messages'>
                        
             {MessageList.map(   
                 (item) => {
@@ -56,7 +55,7 @@ export const Message = () => {
                                 <Stack spacing={2}>
                                     <Item>{item.text}</Item>
                                 </Stack>
-                                </Box>
+                            </Box>
                         </div>
                     )
                 }
