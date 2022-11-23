@@ -13,7 +13,8 @@ const initialChats = {
         name:"Happy Chat", 
         MessageList: [{text:"FirstMessageHereToo!", author: 'User' }], 
     }, 
-    lucky: {}, 
+    lucky: {name:"Happy Chat", 
+    MessageList: [],}, 
 };
 
 
@@ -29,7 +30,7 @@ export const Chat = () => {
     const{ chatId } = useParams(); 
     const[chats, setChats] = useState(initialChats); 
     console.log(chatId)
-    console.log(chats[chatId])
+    console.log(chats[chatId].MessageList)
     // if(!chats[chatId]) { 
     //     return null;            
     // }
@@ -42,7 +43,7 @@ export const Chat = () => {
                 </div> 
                 <div> 
                     {/* <Message /> */}
-                    <Message MessageList={chats[chatId].MessageList} /> 
+                    <Message Messages={chats[chatId].MessageList} /> 
                 </div> 
             </div> 
         </>     

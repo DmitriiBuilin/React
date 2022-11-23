@@ -7,8 +7,8 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 
-export const Message = () => {
-    const [MessageList, setMessageList] = useState([]);
+export const Message = ({Messages}) => {
+    const [MessageList, setMessageList] = useState(Messages);
     const [Value, setValue] = useState('');
     const handleChange = (event) => setValue(event.target.value);
     const inputRef = useRef(null);    
