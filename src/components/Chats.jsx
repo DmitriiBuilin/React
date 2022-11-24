@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChatList } from "./ChatList";
 import { Message } from "./Message";
 import './ChatList.css'
@@ -6,15 +6,23 @@ import { useParams } from "react-router-dom";
 
 const initialChats = { 
     friend: { 
-        name:"Friend Chat", 
-        MessageList: [{text:"FirstMessage", author: 'User'}], 
+        name:"Friend Chat",
+        id: 'friend', 
+        MessageList: [{text:"First Message", author: 'User'}], 
     }, 
     happy: { 
-        name:"Happy Chat", 
-        MessageList: [{text:"FirstMessageHereToo!", author: 'User' }], 
+        name:"Happy Chat",
+        id: 'happy',
+        MessageList: [
+            { text:"First Message!", author: 'User Name' },
+            { text:"Second Message Here Too!", author: 'Bot James' }
+        ], 
     }, 
-    lucky: {name:"Happy Chat", 
-    MessageList: [],}, 
+    lucky: {
+        name:"Lucky Chat", 
+        id: 'lucky',
+        MessageList: [],
+    }, 
 };
 
 
@@ -28,26 +36,37 @@ export const NoChat = () => (
 
 export const Chat = () => { 
     const{ chatId } = useParams(); 
-    const[chats, setChats] = useState(initialChats); 
+    const[chats] = useState(initialChats);
     console.log(chatId)
+    console.log(chats)
     console.log(chats[chatId].MessageList)
-    // if(!chats[chatId]) { 
-    //     return null;            
-    // }
-    return ( 
-        <> 
-            <div className="chatsField"> 
-                <div> 
-                    <ChatList chatId={chatId}/> 
-                    {/* <ChatList chats={chats} chatId={chatId} />  */}
+    console.log(chats[chatId])
+
+    useEffect(() => {
+        
+    });
+
+
+    if(!chats[chatId]) { 
+        return (       
+        console.log('Error') 
+        )   
+    }
+    else {
+        return ( 
+            <> 
+                <div className="chatsField"> 
+                    <div> 
+                        <ChatList chatId={chatId}/> 
+                    </div> 
+                    <div> 
+                        <Message Messages={chats[chatId].MessageList} /> 
+                    </div> 
                 </div> 
-                <div> 
-                    {/* <Message /> */}
-                    <Message Messages={chats[chatId].MessageList} /> 
-                </div> 
-            </div> 
-        </>     
-    ); 
+            </>     
+        ); 
+    }
+
 }
 
-
+export default Chat;

@@ -28,13 +28,13 @@ export const Pages = () => {
             <Routes> 
                 <Route path="/profile" element={<Profile />}> 
                 </Route> 
-                <Route exact path="/chats" element={<ChatList /> }> 
+                <Route exact path="/chats" element={<ChatList /> } > 
                 </Route> 
                 <Route exact path="/chats/:chatId" element={<Chat /> }> 
                 </Route> 
-                <Route exact path="/" element={<Main /> }> 
+                <Route exact path="/" element={<Main /> } errorElement={<Error />}> 
                 </Route>
-                <Route element={<Error />}> 
+                <Route path="" errorElement={<Error />}> 
                 </Route>
                 <Route path="/chats/nochat" element={<NoChat /> }> 
                 </Route>
