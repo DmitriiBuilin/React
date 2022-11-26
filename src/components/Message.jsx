@@ -25,6 +25,7 @@ export const Message = ({Messages}) => {
         textAlign: 'left',
         color: theme.palette.text.secondary,
     }));
+    
     useEffect(() => {
         setValue('');
         inputRef.current?.focus();

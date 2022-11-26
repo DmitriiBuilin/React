@@ -26,7 +26,6 @@ export const ChatList = () => {
         },
     ]);
 
-
     return (
         <div className='chatList'>                       
            {ChatList.map(
