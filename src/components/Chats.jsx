@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChatList } from "./ChatList";
 import { Message } from "./Message";
 import './ChatList.css'
@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 const initialChats = { 
     friend: { 
+<<<<<<< HEAD
         name:"Friend Chat", 
         MessageList: [{text:"First Message", author: 'User'}], 
     }, 
@@ -15,9 +16,25 @@ const initialChats = {
             {text:"Second Message", author: 'User'},
             {text:"Reply", author: 'Bot James'}
         ],
+=======
+        name:"Friend Chat",
+        id: 'friend', 
+        MessageList: [{text:"First Message", author: 'User'}], 
     }, 
-    lucky: {name:"Happy Chat", 
-    MessageList: [],}, 
+    happy: { 
+        name:"Happy Chat",
+        id: 'happy',
+        MessageList: [
+            { text:"First Message!", author: 'User Name' },
+            { text:"Second Message Here Too!", author: 'Bot James' }
+        ], 
+    }, 
+    lucky: {
+        name:"Lucky Chat", 
+        id: 'lucky',
+        MessageList: [],
+>>>>>>> les4.1
+    }, 
 };
 
 
@@ -31,10 +48,28 @@ export const NoChat = () => (
 
 export const Chat = () => { 
     const{ chatId } = useParams(); 
+<<<<<<< HEAD
     const[chats] = useState(initialChats); 
 
     if(!chats[chatId]) { 
         return <NoChat/>;            
+=======
+    const[chats] = useState(initialChats);
+    console.log(chatId)
+    console.log(chats)
+    console.log(chats[chatId].MessageList)
+    console.log(chats[chatId])
+
+    useEffect(() => {
+        
+    });
+
+
+    if(!chats[chatId]) { 
+        return (       
+        console.log('Error') 
+        )   
+>>>>>>> les4.1
     }
     else {
         return ( 
@@ -50,6 +85,11 @@ export const Chat = () => {
             </>     
         ); 
     }
+<<<<<<< HEAD
+}
+=======
+>>>>>>> les4.1
+
 }
 
-
+export default Chat;
