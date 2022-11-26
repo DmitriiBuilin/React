@@ -7,11 +7,14 @@ import { useParams } from "react-router-dom";
 const initialChats = { 
     friend: { 
         name:"Friend Chat", 
-        MessageList: [{text:"FirstMessage", author: 'User'}], 
+        MessageList: [{text:"First Message", author: 'User'}], 
     }, 
     happy: { 
         name:"Happy Chat", 
-        MessageList: [{text:"FirstMessageHereToo!", author: 'User' }], 
+        MessageList: [
+            {text:"Second Message", author: 'User'},
+            {text:"Reply", author: 'Bot James'}
+        ],
     }, 
     lucky: {name:"Happy Chat", 
     MessageList: [],}, 
@@ -28,26 +31,25 @@ export const NoChat = () => (
 
 export const Chat = () => { 
     const{ chatId } = useParams(); 
-    const[chats, setChats] = useState(initialChats); 
-    console.log(chatId)
-    console.log(chats[chatId].MessageList)
-    // if(!chats[chatId]) { 
-    //     return null;            
-    // }
-    return ( 
-        <> 
-            <div className="chatsField"> 
-                <div> 
-                    <ChatList chatId={chatId}/> 
-                    {/* <ChatList chats={chats} chatId={chatId} />  */}
+    const[chats] = useState(initialChats); 
+
+    if(!chats[chatId]) { 
+        return <NoChat/>;            
+    }
+    else {
+        return ( 
+            <> 
+                <div className="chatsField"> 
+                    <div> 
+                        <ChatList chatId={chatId}/> 
+                    </div> 
+                    <div> 
+                        <Message Messages={chats[chatId].MessageList} /> 
+                    </div> 
                 </div> 
-                <div> 
-                    {/* <Message /> */}
-                    <Message Messages={chats[chatId].MessageList} /> 
-                </div> 
-            </div> 
-        </>     
-    ); 
+            </>     
+        ); 
+    }
 }
 
 

@@ -27,7 +27,6 @@ export const Message = ({Messages}) => {
     }));
     useEffect(() => {
         setValue('');
-        console.log(MessageList);
         inputRef.current?.focus();
         if (MessageList[MessageList.length - 1]?.author === 'User') { 
             setTimeout(() => {

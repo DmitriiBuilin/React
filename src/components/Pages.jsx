@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ChatList } from "./ChatList";
-import { Chat, NoChat } from "./Chats";
+import { Chat } from "./Chats";
 import { Error } from "./Error";
 import { Main } from "./Main";
 import './Pages.css';
@@ -32,11 +32,9 @@ export const Pages = () => {
                 </Route> 
                 <Route exact path="/chats/:chatId" element={<Chat /> }> 
                 </Route> 
-                <Route exact path="/" element={<Main /> }> 
+                <Route exact path="/" element={<Main /> } errorElement={<Error />}> 
                 </Route>
-                <Route element={<Error />}> 
-                </Route>
-                <Route path="/chats/nochat" element={<NoChat /> }> 
+                <Route errorElement={<Error />}> 
                 </Route>
             </Routes>
         </BrowserRouter>

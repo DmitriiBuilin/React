@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 
 
 export const ChatList = () => {
-    const [ChatLista] = useState([
+    const [ChatList] = useState([
         {
             name: 'Friend Chat',
             id: 'friend',
-            MessageList: [{text:"FirstMessage", author: 'User'}],
+            MessageList: [],
         },
         {
             name: 'Happy Chat',
@@ -29,7 +29,7 @@ export const ChatList = () => {
 
     return (
         <div className='chatList'>                       
-           {ChatLista.map(
+           {ChatList.map(
                 (item) => {
                     return (
                         <div key={item.id}>
