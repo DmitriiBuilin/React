@@ -34,13 +34,7 @@ export const Pages = () => {
                 </Route> 
                 <Route exact path="/" element={<Main /> } errorElement={<Error />}> 
                 </Route>
-<<<<<<< HEAD
                 <Route errorElement={<Error />}> 
-=======
-                <Route path="" errorElement={<Error />}> 
-                </Route>
-                <Route path="/chats/nochat" element={<NoChat /> }> 
->>>>>>> les4.1
                 </Route>
             </Routes>
         </BrowserRouter>
