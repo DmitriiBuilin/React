@@ -1,0 +1,33 @@
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+li {
+    margin-left: 5px;
+}
+
+a:link, a:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(75, 149, 210);
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #0000005b;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(75, 149, 210);
+    color: white;
+  }
+
+.linksButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
