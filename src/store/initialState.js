@@ -1,3 +1,3 @@
-export const initialState = {
-    checkBox: 'checked'
-}
+// export const initialState = {
+//     }
+

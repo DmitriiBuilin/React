@@ -1,3 +1,3 @@
-const CHECKED = "CHECKED"; 
+export const checkedInput = { type: 'CHECKED' }
 
-export const checkedInput = { type: CHECKED }
+export default checkedInput;

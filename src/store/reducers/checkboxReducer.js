@@ -1,16 +1,11 @@
-import { initialState } from "../initialState";
+export const checkboxReducer = (state = false, action) => {
 
-export const checkboxReducer = (state = initialState, action) => {
-    // const { type, payload } = action;
-
-    switch (action.type) {
+  switch (action.type) {
       case 'CHECKED':
-        return {
-            ...state,
-            checkBox: ''
-        }
-  
+        return !state;
       default:
         return state
     }
 }
+
+export default checkboxReducer;

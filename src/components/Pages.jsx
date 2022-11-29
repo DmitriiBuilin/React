@@ -34,7 +34,7 @@ export const Pages = () => {
                 </Route> 
                 <Route exact path="/" element={<Main /> } errorElement={<Error />}> 
                 </Route>
-                <Route errorElement={<Error />}> 
+                <Route path="*" errorElement={<Error />}> 
                 </Route>
             </Routes>
         </BrowserRouter>

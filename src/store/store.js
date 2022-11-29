@@ -1,8 +1,16 @@
 import { createStore } from "redux";
-import { initialState } from "./initialState";
+import checkedInput from "./actions/checkboxAction";
 import { checkboxReducer } from "./reducers/checkboxReducer";
 
 export const store = createStore(
-    initialState,
-    checkboxReducer
+    checkboxReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+store.subscribe(() => console.log(store.getState()));
+store.dispatch(checkedInput);
+store.dispatch(checkedInput);
+store.dispatch(checkedInput);
+
+
+export default store;
