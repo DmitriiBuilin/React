@@ -39,8 +39,9 @@ export const Message = ({Messages}) => {
             }, 1500); } 
         }, [MessageList]
     );
-
-    return (
+    // console.log(Messages);
+    // console.log(MessageList);
+    return (        
         <div className='messages'>
                        
             {MessageList.map(   

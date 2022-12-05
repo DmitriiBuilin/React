@@ -1,31 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChatList } from "./ChatList";
 import { Message } from "./Message";
 import './ChatList.css'
 import { useParams } from "react-router-dom";
-
-const initialChats = { 
-    friend: { 
-        name:"Friend Chat", 
-        id: 'friend', 
-        MessageList: [{text:"First Message", author: 'User'}], 
-    }, 
-    happy: { 
-        name:"Happy Chat",
-        id: 'happy',  
-        MessageList: [
-            {text:"Second Message", author: 'User'},
-            {text:"Reply", author: 'Bot James'}
-        ],
-    }, 
-    lucky: {
-        name:"Happy Chat",
-        id: 'lucky', 
-        MessageList: [],
-    }, 
-};
-
-
+import { useSelector } from "react-redux";
 
 export const NoChat = () => ( 
 <> 
@@ -35,22 +13,34 @@ export const NoChat = () => (
 )
 
 export const Chat = () => { 
+    const initialChats = useSelector(state => state.chatList)
+
     const{ chatId } = useParams(); 
     const[chats] = useState(initialChats); 
 
+    useEffect(() => {
+       <Message />
 
-    if(!chats[chatId]) { 
+    });
+
+    if(!chatId) { 
         return <NoChat/>;            
     }
     else {
+        // console.log(chats[chatId].id);
+        console.log(initialChats);
+        console.log(chats);
+        console.log(chatId);
+
+        // dispatch(ONCLICKCHAT, chatId);
         return ( 
             <> 
                 <div className="chatsField"> 
                     <div> 
-                        <ChatList chatId={chatId}/> 
+                        <ChatList /> 
                     </div> 
                     <div> 
-                        <Message Messages={chats[chatId].MessageList} /> 
+                        <Message Messages={chats[1].MessageList} /> 
                     </div> 
                 </div> 
             </>     
@@ -58,4 +48,4 @@ export const Chat = () => {
     }
 }
 
-
+export default Chat;
