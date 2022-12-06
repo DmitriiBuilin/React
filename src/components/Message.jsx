@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+// import { useDispatch } from 'react-redux';
 
 export const Message = ({Messages}) => {
     const [MessageList, setMessageList] = useState(Messages);
@@ -25,6 +26,10 @@ export const Message = ({Messages}) => {
         textAlign: 'left',
         color: theme.palette.text.secondary,
     }));
+    // const dispatch = useDispatch();
+    // const addMessages = (value) => {
+    //     dispatch({type: 'ADDMESAGE', payload: value});
+    // };
     
     useEffect(() => {
         setValue('');
@@ -41,6 +46,9 @@ export const Message = ({Messages}) => {
     );
     // console.log(Messages);
     // console.log(MessageList);
+    // addMessages(MessageList);
+
+
     return (        
         <div className='messages'>
                        

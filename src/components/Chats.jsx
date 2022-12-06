@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ChatList } from "./ChatList";
 import { Message } from "./Message";
 import './ChatList.css'
@@ -8,31 +8,25 @@ import { useSelector } from "react-redux";
 export const NoChat = () => ( 
 <> 
     <h2>Please select a chat</h2> 
-    <ChatList/>     
+    <ChatList/>      
 </> 
 )
 
 export const Chat = () => { 
-    const initialChats = useSelector(state => state.chatList)
-
+    const messages = useSelector(state => state.messages)
     const{ chatId } = useParams(); 
-    const[chats] = useState(initialChats); 
+    const switchChat = useSelector(state => state.switchChat)
 
     useEffect(() => {
        <Message />
 
     });
 
-    if(!chatId) { 
+    if(chatId !== switchChat) {
         return <NoChat/>;            
     }
     else {
-        // console.log(chats[chatId].id);
-        console.log(initialChats);
-        console.log(chats);
-        console.log(chatId);
-
-        // dispatch(ONCLICKCHAT, chatId);
+        // console.log(messages[selector]);
         return ( 
             <> 
                 <div className="chatsField"> 
@@ -40,7 +34,8 @@ export const Chat = () => {
                         <ChatList /> 
                     </div> 
                     <div> 
-                        <Message Messages={chats[1].MessageList} /> 
+                        {/* <Message />  */}
+                        <Message Messages={messages[switchChat]} /> 
                     </div> 
                 </div> 
             </>     
