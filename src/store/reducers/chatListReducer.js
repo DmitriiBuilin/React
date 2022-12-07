@@ -1,28 +1,51 @@
-const initialChats = [ 
-  { 
-      name: 'Friend Chat', 
-      id: 'friend'
-  }, 
-  { 
-      name: 'Happy Chat',
-      id: 'happy'
-  }, 
-  {
-      name: 'Lucky Chat',
-      id: 'lucky'
-  }, 
-];
+// const initialChats = [ 
+//   { 
+//       name: 'Friend Chat', 
+//       id: 'friend'
+//   }, 
+//   { 
+//       name: 'Happy Chat',
+//       id: 'happy'
+//   }, 
+//   {
+//       name: 'Lucky Chat',
+//       id: 'lucky'
+//   }, 
+// ];
+
+const initialChats = {
+    chatList: [
+        { 
+            name: 'Friend Chat', 
+            id: 'friend'
+        }, 
+        { 
+            name: 'Happy Chat',
+            id: 'happy'
+        }, 
+        {
+            name: 'Lucky Chat',
+            id: 'lucky'
+        },
+
+    ],
+};
 
 export const chatListReducer = (state = initialChats, action) => {
     switch (action.type) {
-        // case 'CHATLIST':
-        //   return state;
-        case 'ADDCHAT':
+        case 'CHATS::ADD_CHAT':
             return  {
-                ...state, name: [...state.name, action.new]}
-            
-        case 'REMOVECHAT':
-            return -1;
+                ...state, 
+                chatList: [
+                    ...state.chatList,
+                    {
+                        id: `id${state.chatList.length}`,
+                        name: action.name,
+                    },
+                ],
+            }            
+        // case 'REMOVECHAT':
+        //     return -1;
         default:
           return state;
       }

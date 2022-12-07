@@ -6,9 +6,15 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { addMessage } from '../store/actions/actions';
+import { useParams } from 'react-router-dom';
+import { getProfileName } from '../store/selectors/selectors';
 // import { useDispatch } from 'react-redux';
 
 export const Message = ({Messages}) => {
+
+    const profileName = useSelector(getProfileName, shallowEqual);
     const [MessageList, setMessageList] = useState(Messages);
     const [Value, setValue] = useState('');
     const handleChange = (event) => setValue(event.target.value);
@@ -16,9 +22,15 @@ export const Message = ({Messages}) => {
     const form = (event) => {event.preventDefault()};
     const setInput = () => {
         setMessageList([...MessageList, 
-            {text: Value, author: 'User' }
+            {text: Value, author: profileName }
         ])
     };
+    const { chatId } = useParams();
+    const dispatch = useDispatch();
+    const onAddMessage = (message) => {
+        dispatch(addMessage(chatId, message));
+        }
+
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
@@ -26,6 +38,18 @@ export const Message = ({Messages}) => {
         textAlign: 'left',
         color: theme.palette.text.secondary,
     }));
+    
+    // const renderMessage = useCallback((message, i) => (
+    //     <div key={i}>
+    //         <span>
+    //             {message.author === AUTHORS.ME ? profileName : message.author}:
+    //         </span>
+    //         <span>
+    //             {message.text}
+    //         </span>
+    //     </div>
+    //     ), [profileName]);
+
     // const dispatch = useDispatch();
     // const addMessages = (value) => {
     //     dispatch({type: 'ADDMESAGE', payload: value});
@@ -47,7 +71,6 @@ export const Message = ({Messages}) => {
     // console.log(Messages);
     // console.log(MessageList);
     // addMessages(MessageList);
-
 
     return (        
         <div className='messages'>

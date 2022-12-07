@@ -3,19 +3,20 @@ import { ChatList } from "./ChatList";
 import { Message } from "./Message";
 import './ChatList.css'
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
+import { getChatSwitcher, getMessagesList } from "../store/selectors/selectors";
 
 export const NoChat = () => ( 
-<> 
-    <h2>Please select a chat</h2> 
-    <ChatList/>      
+<>     
+    <ChatList/>  
+    <h2>Please select a chat</h2>     
 </> 
 )
 
 export const Chat = () => { 
-    const messages = useSelector(state => state.messages)
+    const messages = useSelector(getMessagesList, shallowEqual)
     const{ chatId } = useParams(); 
-    const switchChat = useSelector(state => state.switchChat)
+    const switchChat = useSelector(getChatSwitcher)
 
     useEffect(() => {
        <Message />
