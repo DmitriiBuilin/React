@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { ChatList } from "./ChatList";
-import { Message } from "./Message";
-import './ChatList.css'
+import { ChatList } from "../chatList/ChatList";
+import { Message } from "../message/Message";
+import '../chatList/ChatList.css'
 import { useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
-import { getChatSwitcher, getMessagesList } from "../store/selectors/selectors";
+import { getChatSwitcher, getMessagesList } from "../../store/selectors/selectors";
 
 export const NoChat = () => ( 
 <>     

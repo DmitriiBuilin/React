@@ -8,9 +8,9 @@ import { Link, useParams } from 'react-router-dom';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { addChat } from '../store/actions/actions';
+import { addChat } from '../../store/actions/actions';
 import { Dialog, DialogTitle, TextField } from '@mui/material';
-import { getChatList } from '../store/selectors/selectors';
+import { getChatList } from '../../store/selectors/selectors';
 
 export const ChatList = () => {
 

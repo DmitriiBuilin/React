@@ -7,9 +7,9 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { addMessage } from '../store/actions/actions';
+import { addMessage } from '../../store/actions/actions';
 import { useParams } from 'react-router-dom';
-import { getProfileName } from '../store/selectors/selectors';
+import { getProfileName } from '../../store/selectors/selectors';
 // import { useDispatch } from 'react-redux';
 
 export const Message = ({Messages}) => {
@@ -100,7 +100,7 @@ export const Message = ({Messages}) => {
                 />
                 <Button variant="outlined"  className='button' 
                     onClick={setInput}>Send
-                </Button>
+                </Button>   
             </form>
         </div>
     );

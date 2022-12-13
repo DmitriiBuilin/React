@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { ChatList } from "./ChatList";
-import { Chat } from "./Chats";
-import { Error } from "./Error";
-import { Main } from "./Main";
+import { ChatList } from "../chatList/ChatList";
+import { Chat } from "../chats/Chats";
+import { Error } from "../error/Error";
+import { Main } from "../main/Main";
 import './Pages.css';
-import { Profile } from "./Profile";
+import { Profile } from "../profile/Profile";
 
 
 export const Pages = () => {
