@@ -20,17 +20,17 @@ export const Message = ({Messages}) => {
     const handleChange = (event) => setValue(event.target.value);
     const inputRef = useRef(null);    
     const form = (event) => {event.preventDefault()};
-    const setInput = () => {
-        setMessageList([...MessageList, 
-            {text: Value, author: profileName }
-        ])
-    };
     const { chatId } = useParams();
     const dispatch = useDispatch();
     const onAddMessage = (message) => {
         dispatch(addMessage(chatId, message));
         }
-
+    const setInput = (message) => {
+        setMessageList([...MessageList, 
+            {text: Value, author: profileName }
+        ]);
+        dispatch(addMessage(chatId, message));
+    };
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,

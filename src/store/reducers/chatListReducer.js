@@ -1,18 +1,3 @@
-// const initialChats = [ 
-//   { 
-//       name: 'Friend Chat', 
-//       id: 'friend'
-//   }, 
-//   { 
-//       name: 'Happy Chat',
-//       id: 'happy'
-//   }, 
-//   {
-//       name: 'Lucky Chat',
-//       id: 'lucky'
-//   }, 
-// ];
-
 const initialChats = {
     chatList: [
         { 
