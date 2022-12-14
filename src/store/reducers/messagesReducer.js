@@ -1,4 +1,4 @@
-import { ADD_MESSAGE } from "../actions/actions";
+    import { ADD_EMPTY_VALUE, ADD_MESSAGE } from "../actions/actions";
 
 const initialState = {
     // to be stored like this {[chatId]: [{id, text, author}]}
@@ -19,7 +19,6 @@ const initialState = {
         switch (action.type) {
             case ADD_MESSAGE: {
                 const currentList = state.messageList[action.chatId] || [];
-                console.log(currentList);
                 return {
                     ...state,
                     messageList: {
@@ -28,9 +27,17 @@ const initialState = {
                             ...currentList,
                             {
                                 ...action.message,
-                                id: `${action.chatId}${currentList.length}`,
                             },
                         ],
+                    },
+                };
+            }
+            case ADD_EMPTY_VALUE: {
+                return {
+                    ...state,
+                    messageList: {
+                        ...state.messageList,
+                        [action.chatId]: [],
                     },
                 };
             }
@@ -40,32 +47,3 @@ const initialState = {
     };
 
 export default messagesReducer;
-
-
-// const messages = 
-//     {friend: [
-//         {text:"First Message", author: 'User'}
-//     ], 
-//     happy: [
-//         {text:"Second Message", author: 'User'},
-//         {text:"Reply", author: 'Bot James'}
-//     ],
-//     lucky: [    
-//     ]};
-
-// console.log(messages);
-
-
-// export const messagesReducer = (state = messages, action) => {
-//     switch (action.type) {
-//         case 'RENDERMESAGES':
-//           return state;
-//         case 'ADDMESAGE':
-//             return action.payload;
-//         default:
-//           return state;
-//     }
-// }
-
-
-

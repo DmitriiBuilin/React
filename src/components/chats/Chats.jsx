@@ -14,20 +14,18 @@ export const NoChat = () => (
 )
 
 export const Chat = () => { 
-    const messages = useSelector(getMessagesList, shallowEqual)
-    const{ chatId } = useParams(); 
     const switchChat = useSelector(getChatSwitcher)
+    const messages = useSelector(getMessagesList, shallowEqual)
+    const { chatId } = useParams(); 
 
     useEffect(() => {
        <Message />
-
     });
 
     if(chatId !== switchChat) {
         return <NoChat/>;            
     }
     else {
-        // console.log(messages[selector]);
         return ( 
             <> 
                 <div className="chatsField"> 
@@ -35,7 +33,6 @@ export const Chat = () => {
                         <ChatList /> 
                     </div> 
                     <div> 
-                        {/* <Message />  */}
                         <Message Messages={messages[switchChat]} /> 
                     </div> 
                 </div> 

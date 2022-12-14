@@ -2,15 +2,15 @@ const initialChats = {
     chatList: [
         { 
             name: 'Friend Chat', 
-            id: 'friend'
+            id: '0'
         }, 
         { 
             name: 'Happy Chat',
-            id: 'happy'
+            id: '1'
         }, 
         {
             name: 'Lucky Chat',
-            id: 'lucky'
+            id: '2'
         },
 
     ],
@@ -24,13 +24,15 @@ export const chatListReducer = (state = initialChats, action) => {
                 chatList: [
                     ...state.chatList,
                     {
-                        id: `id${state.chatList.length}`,
-                        name: action.name,
+                        id: `${state.chatList.length}`,
+                        name: action.payload,
                     },
                 ],
             }            
-        // case 'REMOVECHAT':
-        //     return -1;
+        case 'CHATS::DEL_CHAT':
+            return {
+                ...state.filter((item) => item.chatId !== action.payload)
+            }
         default:
           return state;
       }

@@ -10,7 +10,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../store/actions/actions';
 import { useParams } from 'react-router-dom';
 import { getProfileName } from '../../store/selectors/selectors';
-// import { useDispatch } from 'react-redux';
+
 
 export const Message = ({Messages}) => {
 
@@ -22,10 +22,8 @@ export const Message = ({Messages}) => {
     const form = (event) => {event.preventDefault()};
     const { chatId } = useParams();
     const dispatch = useDispatch();
-    const onAddMessage = (message) => {
-        dispatch(addMessage(chatId, message));
-        }
-    const setInput = (message) => {
+    const setInput = () => {
+        const message = {text: Value, author: profileName };
         setMessageList([...MessageList, 
             {text: Value, author: profileName }
         ]);
@@ -68,13 +66,9 @@ export const Message = ({Messages}) => {
             }, 1500); } 
         }, [MessageList]
     );
-    // console.log(Messages);
-    // console.log(MessageList);
-    // addMessages(MessageList);
 
     return (        
-        <div className='messages'>
-                       
+        <div className='messages'>                       
             {MessageList.map(   
                 (item) => {
                     return (
