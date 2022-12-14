@@ -5,13 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import store from './store/store';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import store, { persistor } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { CircularProgress } from '@mui/material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <PersistGate persistor={persistor} loading={<CircularProgress />}>
+        <App />
+      </PersistGate>
     </React.StrictMode>
   </Provider>
 );

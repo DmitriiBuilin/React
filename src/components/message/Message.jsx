@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import './Message.css'
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
@@ -22,12 +22,26 @@ export const Message = ({Messages}) => {
     const form = (event) => {event.preventDefault()};
     const { chatId } = useParams();
     const dispatch = useDispatch();
+    const addMessageWithThunk = (chatId, message) => (dispatch, getState) => { 
+        // dispatch(addMessage(chatId, message)); 
+        if (MessageList[MessageList.length - 1]?.author === 'User') { 
+            const botMessage = {
+                text: "Hallo, Hola, Merhaba, שלום, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
+                author: "Bot James" 
+            }; 
+            setTimeout(() => dispatch(addMessage(chatId, botMessage)), 2000); 
+        } 
+    } 
+    const onAddMessage = useCallback((message) => { 
+        dispatch(addMessageWithThunk(chatId, message)); 
+    }, [chatId, dispatch]);
+
     const setInput = () => {
-        const message = {text: Value, author: profileName };
-        setMessageList([...MessageList, 
-            {text: Value, author: profileName }
-        ]);
+        const message = {text: Value, author: profileName};
+        setMessageList([...MessageList, message]);
         dispatch(addMessage(chatId, message));
+        setValue('');
+        onAddMessage();
     };
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -37,35 +51,22 @@ export const Message = ({Messages}) => {
         color: theme.palette.text.secondary,
     }));
     
-    // const renderMessage = useCallback((message, i) => (
-    //     <div key={i}>
-    //         <span>
-    //             {message.author === AUTHORS.ME ? profileName : message.author}:
-    //         </span>
-    //         <span>
-    //             {message.text}
-    //         </span>
-    //     </div>
-    //     ), [profileName]);
+    // useEffect(() => {
+    //     setValue('');
+    //     inputRef.current?.focus();
+    //     if (MessageList[MessageList.length - 1]?.author === 'User') { 
+    //         setTimeout(() => {
+    //             setMessageList([...MessageList, 
+    //             { 
+    //                 text: "Hallo, Hola, Merhaba, שלום, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
+    //                 author: "Bot James" 
+    //             }]); 
+    //         }, 1500); } 
+    //     }, [MessageList]
+    // );
 
-    // const dispatch = useDispatch();
-    // const addMessages = (value) => {
-    //     dispatch({type: 'ADDMESAGE', payload: value});
-    // };
-    
-    useEffect(() => {
-        setValue('');
-        inputRef.current?.focus();
-        if (MessageList[MessageList.length - 1]?.author === 'User') { 
-            setTimeout(() => {
-                setMessageList([...MessageList, 
-                { 
-                    text: "Hallo, Hola, Merhaba, שלום, Привет, Hello, Сәлеметсіз бе, 你好, こんにちは, Բարեւ Ձեզ", 
-                    author: "Bot James" 
-                }]); 
-            }, 1500); } 
-        }, [MessageList]
-    );
+
+
 
     return (        
         <div className='messages'>                       

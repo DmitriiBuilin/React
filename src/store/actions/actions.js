@@ -5,6 +5,7 @@ export const CHATSELECTOR = {type: 'CHATSELECTOR'}
 export const RENDERMESAGES = {type: 'RENDERMESAGES'}
 export const TOGGLESHOWNAME = {type: 'TOGGLESHOWNAME'}
 
+
 export const CHANGENAME = 'PROFILE::CHANGENAME';
 export const changeName = (newName) => ({
     type: CHANGENAME,
