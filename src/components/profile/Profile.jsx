@@ -1,18 +1,26 @@
 import Button from "@mui/material/Button";
 import { React, useCallback, useState } from "react";
-// import Checkbox from '@mui/material/Checkbox';
 import { useDispatch, useSelector } from "react-redux";
 import { changeName } from "../../store/actions/actions";
-// import { TOGGLESHOWNAME, DECREASE, INCREASE, CHECKED, CHANGENAME} from "../store/actions/actions";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDpyDwMoVVFcfBdjqUkoJY2hQtYxrwO84A",
+  authDomain: "gb-react-2022.firebaseapp.com",
+  projectId: "gb-react-2022",
+  storageBucket: "gb-react-2022.appspot.com",
+  messagingSenderId: "254277553021",
+  appId: "1:254277553021:web:ccf47e68f29958abe19a14"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export const Profile = () => {
-    // const count = useSelector(state => state.count)
     const dispatch = useDispatch();
-    // const { name } = useSelector(state => state.profile);
     const [value, setValue] = useState('');   
-    // const setShowName = useCallback(() => {
-    //     dispatch(TOGGLESHOWNAME);
-    // }, [dispatch]);
     const name = useSelector((store) => store.profile.name)
     const handleChange = useCallback((e) => {
         setValue(e.target.value);
