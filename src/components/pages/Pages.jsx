@@ -6,12 +6,15 @@ import { Error } from "../error/Error";
 import { Main } from "../main/Main";
 import './Pages.css';
 import { Profile } from "../profile/Profile";
+import { SignUp } from "../authorisation/signUp";
+import { SignIn } from "../authorisation/signIn";
 import { Api } from "../api/api";
 
 
 export const Pages = () => {
     return (
-        <BrowserRouter>
+        <>
+                <BrowserRouter>
             <header>
                 <ul className="linksButtons"> 
                     <li> 
@@ -30,6 +33,10 @@ export const Pages = () => {
             </header>
             
             <Routes> 
+                <Route path="/profile/signin" element={<SignIn />}> 
+                </Route>
+                <Route path="/profile/signup" element={<SignUp />}> 
+                </Route>
                 <Route path="/profile" element={<Profile />}> 
                 </Route> 
                 <Route exact path="/api" element={<Api   /> } > 
@@ -44,5 +51,7 @@ export const Pages = () => {
                 </Route>
             </Routes>
         </BrowserRouter>
+        </>
+        
     )
 }
