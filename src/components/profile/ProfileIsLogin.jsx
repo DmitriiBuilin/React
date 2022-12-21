@@ -1,7 +1,9 @@
 import Button from "@mui/material/Button";
 import { React, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeName } from "../../store/actions/actions";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../../services/firebase";
+import { auth, changeName } from "../../store/actions/actions";
 
 
 export const ProfileIsLogin = () => {
@@ -16,6 +18,14 @@ export const ProfileIsLogin = () => {
         setValue('')
         }, [dispatch, value]);
 
+    const navigate = useNavigate()    
+
+    const handleLogOut = async () => {
+        await logOut();
+        navigate('/profile/profile');
+        auth();
+    }
+
     return (
         <>
             <div>
@@ -28,6 +38,10 @@ export const ProfileIsLogin = () => {
             <div style={{marginTop: '10px'}}>
                 <Button style={{backgroundColor: 'grey', color: 'white'}} onClick={setName}>Change Name</Button>
             </div>
+            <div style={{marginTop: '10px'}}>
+                <Button style={{backgroundColor: 'black', color: 'white'}} onClick={handleLogOut}>Log out</Button>
+            </div>
+
         </>
         
         // <div>
@@ -41,4 +55,4 @@ export const ProfileIsLogin = () => {
     )
 }
 
-export default Profile;
+export default ProfileIsLogin;

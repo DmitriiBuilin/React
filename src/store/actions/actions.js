@@ -12,6 +12,11 @@ export const changeName = (newName) => ({
     payload: newName,
 });
 
+export const AUTH = 'PROFILE::AUTH';
+export const auth = (data) => {
+    return { type: AUTH, payload: data }
+  };
+
 export const ADD_CHAT = 'CHATS::ADD_CHAT';
 export const addChat = (name) => ({
     type: ADD_CHAT, payload: name, 

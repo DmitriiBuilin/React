@@ -1,6 +1,7 @@
 const initialState = {
     showName: false,
-    name: 'Default'
+    name: 'Default',
+    isAuth: false
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -14,6 +15,10 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: action.payload
+            }
+        case 'PROFILE::AUTH':
+            return {
+                ...state, isAuth: action.payload
             }
         default:
             return state

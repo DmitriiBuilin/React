@@ -12,11 +12,10 @@ const firebaseConfig = {
   appId: "1:254277553021:web:ccf47e68f29958abe19a14"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const firbaseAuth = getAuth(app);
+export const firbaseAuth = getAuth(app);
 
-// createUserWithEmailAndPassword(auth, email, password)
+// createUserWithEmailAndPassword(firbaseAuth, email, password)
 //   .then((userCredential) => {
 //     // Signed in 
 //     const user = userCredential.user;
