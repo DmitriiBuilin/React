@@ -41,7 +41,7 @@ export const Pages = () => {
 
     return (
         <>
-                <BrowserRouter>
+        <BrowserRouter>
             <header>
                 <ul className="linksButtons"> 
                     <li> 
